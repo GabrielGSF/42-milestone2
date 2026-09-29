@@ -9,7 +9,7 @@ class Plant:
 
     def basic_show(self) -> str:
         return (f"{self.name}: "
-                f"{self.height}cm, {self.age} days old ")
+                f"{self.height:.1f}cm, {self.age} days old ")
 
 
 class Flower(Plant):
@@ -24,11 +24,11 @@ class Flower(Plant):
             print(f"{self.name} has not bloomed yet")
             print(f"[asking the {self.name} to bloom]")
             self.bloomed = True
-        print(f"{self.name} is blooming beutifully!")
+        else:
+            print(f"{self.name} is blooming beutifully!")
 
     def show(self) -> None:
         print(f"{self.basic_show()}\n Color: {self.color}")
-        self.bloom()
 
 
 class Tree(Plant):
@@ -40,39 +40,58 @@ class Tree(Plant):
 
     def produce_shade(self) -> None:
         """Produce shade - print name and size"""
-        print(f'{self.name} provides {int(3.14 * self.trunk_diameter ** 2)} '
-              f'square meters of shade\n')
+        print(f"[asking the {self.name} to produce shade]")
+        print(f"Tree {self.name} now produces a shade of {self.height:.1f}cm "
+              f"long and {self.trunk_diameter:.1f}cm wide.")
 
     def show(self) -> None:
-        print(f"{self.basic_show()}, {self.trunk_diameter}cm diameter")
+        print(f"{self.basic_show()}\n "
+              f"Trunk diameter: {self.trunk_diameter:.1f}cm")
         self.produce_shade()
 
 
 class Vegetable(Plant):
     """Initialize a Plant Subclass"""
     def __init__(self, name: str, height: float, age: int,
-                 harvest_season: str, nutritional_value: str) -> None:
+                 harvest_season: str, nutritional_value: int) -> None:
         super().__init__(name, height, age)
-        self.harvest_season = harvest_season
+        self.harvest_season = harvest_season.capitalize()
         self.nutritional_value = nutritional_value
 
-    def nut_value(self) -> None:
+    def grow(self, days: int, grow_rate: float, nut_rate: float) -> None:
         """Get nutricional value"""
-        print(f"{self.name} is rich in {self.nutritional_value}\n")
+        print(f"[make {self.name} grow and age for {days} days]")
+        day = 1
+        while day <= days:
+            self.nutritional_value += nut_rate
+            self.age += 1
+            self.height += grow_rate
+            day += 1
 
     def show(self) -> None:
-        print(f"{self.basic_show()}, {self.harvest_season} harvest")
-        self.nut_value()
+        print(f"{self.basic_show()}\n "
+              f"Harvest season: {self.harvest_season}\n "
+              f"Nutritional value: {self.nutritional_value}")
 
 
 def ft_plant_types() -> None:
     print("=== Garden Plant Types ===")
     rose = Flower("rose", 15, 10, "red")
-    # oak = Tree("oak", 500, 1825, 50),
-    # tomato = Vegetable("tomato", 80, 90, "summer", "vitamin C"),
+    oak = Tree("oak", 200, 365, 5)
+    tomato = Vegetable("tomato", 5, 10, "april", 0)
     print("=== Flower")
     rose.show()
+    rose.bloom()
     rose.show()
+    rose.bloom()
+    print()
+    print("=== Tree")
+    oak.show()
+    print()
+    print("=== Vegetable")
+    tomato.show()
+    tomato.grow(20, 2.1, 1)
+    tomato.show()
 
 
 if __name__ == "__main__":
