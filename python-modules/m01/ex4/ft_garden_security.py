@@ -4,7 +4,7 @@ class Plant:
     def __init__(self, name: str) -> None:
         """Initialize Plant Instance"""
         self.name = name.capitalize()
-        self.__height = 15
+        self.__height = 15.0
         self.__age = 10
         print("Plant created: ", end='')
 
