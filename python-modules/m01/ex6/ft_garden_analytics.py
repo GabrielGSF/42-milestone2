@@ -43,10 +43,7 @@ class Plant:
 
     @staticmethod
     def check_age(age_days: int) -> bool:
-        if (age_days >= 365):
-            return True
-        else:
-            return False
+        return age_days > 365
 
     @classmethod
     def anonymous(cls) -> "Plant":
