@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 import random
 
 
@@ -14,9 +16,11 @@ ACHIEVEMENTS: list[str] = [
     'Gold Hoarder', 'Relic Seeker', 'Arena Champion', 'Completionist'
 ]
 
+
 def gen_player_achievements() -> set[str]:
     amount = random.randint(6, 12)
     return set(random.sample(ACHIEVEMENTS, amount))
+
 
 if __name__ == "__main__":
     print("=== Achievement Tracker System ===")
