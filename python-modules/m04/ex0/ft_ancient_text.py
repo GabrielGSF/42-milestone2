@@ -7,7 +7,7 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: ft_ancient_text.py <file>")
     else:
-        print("=== Cyber Archives Recovery & Preservation ===")
+        print("=== Cyber Archives Recovery ===")
         file_name = sys.argv[1]
         print(f"Accessing file '{file_name}'")
         f: IO[str] | None = None
